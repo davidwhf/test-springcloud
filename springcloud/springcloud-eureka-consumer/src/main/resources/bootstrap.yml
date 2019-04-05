@@ -1,0 +1,28 @@
+#springcloud-config配置必须写在bootstrap.yml(或bootstrap.properties),以保证程序启动完成时,配置文件已经加载完
+#bootstrap.yml(或bootstrap.properties)先于application.yml(或application.properties)加载
+#springcloud-config使用在eureka注册的config服务时,注册中心指向必须配置在bootstrap.yml(或bootstrap.properties)中,否则会找不到服务
+
+spring:
+  cloud:
+    config:
+      profile: dev
+      #版本标签
+      label: master
+      #配置中心地址
+      #uri: http://localhost:9040/
+      #使用在eureka注册的config服务
+      discovery:
+        enabled: true
+        serviceId: springcloud-config-server
+
+## 注册中心指向
+eureka:
+  instance:
+    #实例标识
+    instance-id: eureka-consumer
+    #显示主机ip
+    prefer-ip-address: true
+  client: 
+    service-url: 
+      #defaultZone: http://127.0.0.1:9000/eureka/
+      defaultZone: http://test:123456@127.0.0.1:9000/eureka/

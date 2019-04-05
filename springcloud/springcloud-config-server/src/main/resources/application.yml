@@ -1,0 +1,28 @@
+## http请求地址和配置文件映射: 
+#/{application}/{profile}[/{label}] 映射 /[{label}/]{application}-{profile}.yml(或.properties)
+#{application} 映射 客户端的spring.application.name
+#{profile} 映射 客户端的spring.cloud.config.profile
+#{label} 映射 客户端的spring.cloud.config.label
+
+server:
+  port: 9040
+
+spring:
+  application:
+    #应用名
+    name: springcloud-config-server
+  profiles:
+    #使用本地文件系统
+    active: native
+
+#加入注册中心,实现高可用
+eureka:
+  instance:
+    #实例标识
+    instance-id: config-server
+    #显示主机ip
+    prefer-ip-address: true
+  client: 
+    service-url: 
+      #defaultZone: http://127.0.0.1:9000/eureka/
+      defaultZone: http://test:123456@127.0.0.1:9000/eureka/

@@ -1,0 +1,20 @@
+# 测试地址:
+* eureka服务注册中心:
+   * `http://localhost:9000(账号密码:test123456)`
+* eureka服务生产者:
+   * `http://localhost:9010/hello/{name}`
+   * `http://localhost:9011/hello/{name}`
+* eureka服务消费者:
+   * `http://localhost:9020/test(需关闭负载均衡)`
+* ribbon负载均衡:
+   * `http://localhost:9020/ribbon/test`
+* hystrix断路器:
+   * `http://localhost:9020/hystrix/test/{name}(需关闭一个服务生产者)`
+* config配置中心:
+   * `http://localhost:9020/config/test(客户端访问配置中心)`
+   * `http://localhost:9040/springcloud-eureka-consumer/dev/master(直接访问配置中心)`
+* actutor刷新配置:
+   * `http://localhost:9020/refresh.html`
+* zuulAPI网关:
+   * `http://localhost:9030/provider/hello/{name}`
+   * `http://localhost:9030/consumer/ribbon/test`

@@ -1,0 +1,34 @@
+server:
+  port: 9030
+
+spring:
+  application:
+    #应用名
+    name: springcloud-zuul
+ 
+## 注册中心指向
+eureka:
+  instance:
+    #实例标识
+    instance-id: zuul
+    #显示主机ip
+    prefer-ip-address: true
+  client: 
+    service-url: 
+      #defaultZone: http://127.0.0.1:9000/eureka/
+      defaultZone: http://test:123456@127.0.0.1:9000/eureka/
+
+zuul:
+  routes:
+    #zuul服务标识(可任意定义,与serviceId一致时,serviceId可不配置)
+    zuul-provider:
+      #服务的映射路径(用于外部访问,例:localhost:9030/provider/hello/tom)
+      path: /provider/**
+      #代理的Eureka注册中心应用(单独使用zuul时,配置所在服务器的IP)
+      serviceId: springcloud-eureka-provider
+    zuul-consumer:
+      path: /consumer/**
+      serviceId: springcloud-eureka-consumer
+    zuul-config-server:
+      path: /config-server/**
+      serviceId: springcloud-config-server
